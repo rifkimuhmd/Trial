@@ -150,8 +150,9 @@ html.lock,html.lock body{overflow:hidden}
 .roles{font-size:17px;font-weight:600;color:var(--text2)}
 .roles b{color:var(--text);font-weight:700}
 .ctas{display:flex;gap:10px}
-.ptile{margin:0;border:2px solid var(--text);background:var(--surface);display:flex;flex-direction:column;min-width:0}
-.ptile img{width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:center 18%;background:#fff}
+.ptile{margin:0;border:2px solid var(--text);background:var(--surface);display:flex;flex-direction:column;min-width:0;align-self:start}
+.pframe{position:relative;width:100%;aspect-ratio:1/1.08;background:#fff;overflow:hidden}
+.pframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;background:#fff}
 .ptile figcaption{border-top:2px solid var(--text);padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
 .ptile figcaption b{display:block;font-size:20px;line-height:1.2}
 .ptile figcaption .loc{font-size:14px;color:var(--text2)}
@@ -174,7 +175,7 @@ html.lock,html.lock body{overflow:hidden}
 h2{font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1.1}
 .h-sm{font-size:24px;letter-spacing:0}
 .filters{display:flex;gap:6px;min-width:0;max-width:100%}
-.chipbtn{height:44px;padding:0 16px;border:2px solid var(--text);background:transparent;color:var(--text);font-weight:700;font-size:14px;flex:none}
+.chipbtn{height:44px;min-width:44px;padding:0 16px;border:2px solid var(--text);background:transparent;color:var(--text);font-weight:700;font-size:14px;flex:none}
 .chipbtn[aria-pressed="true"]{background:var(--ink-block);color:var(--on-ink)}
 .chipbtn:not([aria-pressed="true"]):hover,.chipbtn:not([aria-pressed="true"]):focus-visible{background:var(--soft)}
 .pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
@@ -194,14 +195,13 @@ h2{font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1.1}
 .fig b{font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1}
 .fig span{font-size:13px;color:var(--muted)}
 .pb h3{font-size:16.5px;font-weight:700;line-height:1.25}
-.popen{background:none;border:0;padding:0;margin:0;color:inherit;font:inherit;text-align:left;cursor:pointer;line-height:inherit}
-.popen::after{content:"";position:absolute;inset:0;z-index:0}
+.popen{position:absolute;inset:0;z-index:0;background:transparent;border:0;padding:0;margin:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
 .popen:focus-visible{outline:none}
 .pcard:has(.popen:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
 .desc{font-size:14px;line-height:1.45;color:var(--text2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tools{font-size:13.5px;color:var(--text2)}
 .plinks{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;margin-top:2px}
-.plinks a,.plinks .nolink,.plinks .more{position:relative;z-index:1}
+.plinks a,.plinks .nolink{position:relative;z-index:1}
 .plink{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:700;font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;color:var(--accent)}
 [data-theme="light"] .plink{color:var(--text)}
 .plink:hover,.plink:focus-visible{text-decoration-thickness:2px}
@@ -322,8 +322,8 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   html:not(.js) .links a{min-height:48px}
   .hgrid,.split,.skill-row{grid-template-columns:1fr}
   .kpis{grid-template-columns:1fr 1fr}
-  .ptile{flex-direction:row;align-items:stretch}
-  .ptile img{width:160px;height:160px;aspect-ratio:1;flex:none}
+  .ptile{flex-direction:row;align-items:stretch;align-self:stretch}
+  .pframe{width:160px;height:160px;aspect-ratio:1;flex:none}
   .ptile figcaption{border-top:0;border-left:2px solid var(--text);flex-direction:column;align-items:flex-start;justify-content:center;gap:6px}
   .entry{grid-template-columns:220px minmax(0,1fr)}
   .mobmenu a.mitem,.mactions{padding-left:32px;padding-right:32px}
@@ -337,7 +337,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   .roles{font-size:15px}
   .ctas{display:grid;grid-template-columns:1fr 1fr;width:100%}
   .ctas .btn{width:100%;padding:0 10px}
-  .ptile img{width:104px;height:104px}
+  .pframe{width:104px;height:104px}
   .ptile figcaption b{font-size:18px}
   .kpis{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:20px}
   .kpis .k1{grid-column:1 / -1}
@@ -350,6 +350,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   .pgrid,.edu-grid,.entry{grid-template-columns:1fr}
   .filters{flex-wrap:nowrap;overflow-x:auto;gap:4px;width:100%;overscroll-behavior-x:contain}
   .chipbtn{padding:0 8px;font-size:13px}
+  .brand{min-width:44px;justify-content:center}
   .brand .nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
   .hdr-wa{width:44px;height:44px;padding:0}
   .hdr-wa .wa-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
@@ -408,7 +409,9 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
       </div>
       <figure class="ptile">
-        <img src="images/rifki-600.webp" srcset="images/rifki-208.webp 208w, images/rifki-600.webp 600w" sizes="(max-width: 560px) 104px, (max-width: 900px) 160px, 356px" width="600" height="600" alt="Portrait of Muhammad Rifki" fetchpriority="high" decoding="async">
+        <div class="pframe">
+          <img src="images/rifki-600.webp" srcset="images/rifki-208.webp 208w, images/rifki-600.webp 600w" sizes="(max-width: 560px) 104px, (max-width: 900px) 160px, 356px" width="600" height="648" alt="Portrait of Muhammad Rifki" fetchpriority="high" decoding="async">
+        </div>
         <figcaption>
           <div><b>Muhammad Rifki</b><span class="loc">Depok, Indonesia</span></div>
           <span class="open"><i aria-hidden="true"></i>Open to work</span>
@@ -445,7 +448,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>5,465</b> <span>transactions</span></p>
-          <h3><button type="button" class="popen" id="pb-bakery" aria-haspopup="dialog">Bakery Sales Dashboard<span class="sr">, show details</span></button><span class="nojs-only">Bakery Sales Dashboard</span></h3>
+          <h3><span class="ptitle">Bakery Sales Dashboard</span><button type="button" class="popen" id="pb-bakery" aria-haspopup="dialog"><span class="sr">Bakery Sales Dashboard, show details</span></button></h3>
           <p class="desc">Bakery sales dashboard from 5,465 transactions, with advice for the owner.</p>
           <p class="tools">Python · Looker Studio · CRISP-DM</p>
           <div class="plinks">
@@ -469,7 +472,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>Tableau</b> <span>segments · regions</span></p>
-          <h3><button type="button" class="popen" id="pb-retail" aria-haspopup="dialog">Retail Revenue Dashboard<span class="sr">, show details</span></button><span class="nojs-only">Retail Revenue Dashboard</span></h3>
+          <h3><span class="ptitle">Retail Revenue Dashboard</span><button type="button" class="popen" id="pb-retail" aria-haspopup="dialog"><span class="sr">Retail Revenue Dashboard, show details</span></button></h3>
           <p class="desc">Tableau view of revenue, branches, products, and customer segments.</p>
           <p class="tools">Tableau · Python · Spreadsheet</p>
           <div class="plinks">
@@ -493,7 +496,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>204K</b> <span>raw rows</span></p>
-          <h3><button type="button" class="popen" id="pb-nyc" aria-haspopup="dialog">NYC Property Sales<span class="sr">, show details</span></button><span class="nojs-only">NYC Property Sales</span></h3>
+          <h3><span class="ptitle">NYC Property Sales</span><button type="button" class="popen" id="pb-nyc" aria-haspopup="dialog"><span class="sr">NYC Property Sales, show details</span></button></h3>
           <p class="desc">Cleaned 204K raw NYC sales rows in BigQuery for a Looker Studio dashboard.</p>
           <p class="tools">BigQuery · Looker Studio · CRISP-DM</p>
           <div class="plinks">
@@ -514,7 +517,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         <div class="media media-ph" role="img" aria-label="Screenshot coming soon (blurred version pending)"><span>Screenshot coming soon</span><small>(blurred version pending)</small></div>
         <div class="pb">
           <p class="fig"><b>2016–2026</b> <span>visits · loans</span></p>
-          <h3><button type="button" class="popen" id="pb-metabase" aria-haspopup="dialog">Metabase Library Dashboard<span class="sr">, show details</span></button><span class="nojs-only">Metabase Library Dashboard</span></h3>
+          <h3><span class="ptitle">Metabase Library Dashboard</span><button type="button" class="popen" id="pb-metabase" aria-haspopup="dialog"><span class="sr">Metabase Library Dashboard, show details</span></button></h3>
           <p class="desc">Metabase dashboard of library visits, loans, and top titles, 2016–2026.</p>
           <p class="tools">Metabase · PostgreSQL</p>
           <div class="plinks"><span class="nolink">Screenshots only</span><span class="more" aria-hidden="true">Details +</span></div>
@@ -534,7 +537,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>Python</b> <span>→ Google Sheets</span></p>
-          <h3><button type="button" class="popen" id="pb-attendance" aria-haspopup="dialog">Attendance Report Automation<span class="sr">, show details</span></button><span class="nojs-only">Attendance Report Automation</span></h3>
+          <h3><span class="ptitle">Attendance Report Automation</span><button type="button" class="popen" id="pb-attendance" aria-haspopup="dialog"><span class="sr">Attendance Report Automation, show details</span></button></h3>
           <p class="desc">Python script that turns raw attendance taps into daily check-in/out times.</p>
           <p class="tools">Python · SQL · Google Sheets</p>
           <div class="plinks"><span class="nolink">Screenshots only</span><span class="more" aria-hidden="true">Details +</span></div>
@@ -554,7 +557,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>1,000+</b> <span>participants</span></p>
-          <h3><button type="button" class="popen" id="pb-kudata" aria-haspopup="dialog">Kudata Survey Dashboard<span class="sr">, show details</span></button><span class="nojs-only">Kudata Survey Dashboard</span></h3>
+          <h3><span class="ptitle">Kudata Survey Dashboard</span><button type="button" class="popen" id="pb-kudata" aria-haspopup="dialog"><span class="sr">Kudata Survey Dashboard, show details</span></button></h3>
           <p class="desc">Dashboard of 1,000+ survey participants, Rp2.4M rewards, and top surveys.</p>
           <p class="tools">Looker Studio</p>
           <div class="plinks">
@@ -577,7 +580,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>3</b> <span>early-warning APIs</span></p>
-          <h3><button type="button" class="popen" id="pb-thesis" aria-haspopup="dialog">Thesis: Early Warning System Backend<span class="sr">, show details</span></button><span class="nojs-only">Thesis: Early Warning System Backend</span></h3>
+          <h3><span class="ptitle">Thesis: Early Warning System Backend</span><button type="button" class="popen" id="pb-thesis" aria-haspopup="dialog"><span class="sr">Thesis: Early Warning System Backend, show details</span></button></h3>
           <p class="desc">Regional datasets merged into priority scores, served via Flask APIs.</p>
           <p class="tools">Python (Flask) · PostgreSQL · REST API</p>
           <div class="plinks">
@@ -600,7 +603,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>2019–2024</b> <span>provincial data</span></p>
-          <h3><button type="button" class="popen" id="pb-bansos" aria-haspopup="dialog">Bansos Beneficiaries &amp; Budget Forecast<span class="sr">, show details</span></button><span class="nojs-only">Bansos Beneficiaries &amp; Budget Forecast</span></h3>
+          <h3><span class="ptitle">Bansos Beneficiaries &amp; Budget Forecast</span><button type="button" class="popen" id="pb-bansos" aria-haspopup="dialog"><span class="sr">Bansos Beneficiaries &amp; Budget Forecast, show details</span></button></h3>
           <p class="desc">Forecast social-aid recipients and budget with two Python models.</p>
           <p class="tools">Python · Linear Regression · Random Forest</p>
           <div class="plinks">
@@ -623,7 +626,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>Top 5</b> <span>best-sellers · Feb 2026</span></p>
-          <h3><button type="button" class="popen" id="pb-bookstore" aria-haspopup="dialog">Bookstore Sales Analysis<span class="sr">, show details</span></button><span class="nojs-only">Bookstore Sales Analysis</span></h3>
+          <h3><span class="ptitle">Bookstore Sales Analysis</span><button type="button" class="popen" id="pb-bookstore" aria-haspopup="dialog"><span class="sr">Bookstore Sales Analysis, show details</span></button></h3>
           <p class="desc">SQL showed a 20% discount needs 25%+ more volume to keep revenue flat.</p>
           <p class="tools">Excel · SQL</p>
           <div class="plinks">
@@ -647,7 +650,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
         </div>
         <div class="pb">
           <p class="fig"><b>Excel</b> <span>lookups · payroll</span></p>
-          <h3><button type="button" class="popen" id="pb-excel" aria-haspopup="dialog">Excel Formulas &amp; Lookups<span class="sr">, show details</span></button><span class="nojs-only">Excel Formulas &amp; Lookups</span></h3>
+          <h3><span class="ptitle">Excel Formulas &amp; Lookups</span><button type="button" class="popen" id="pb-excel" aria-haspopup="dialog"><span class="sr">Excel Formulas &amp; Lookups, show details</span></button></h3>
           <p class="desc">Excel sheets that fill salary, tax, and candidate data by formula.</p>
           <p class="tools">Microsoft Excel · VLOOKUP/HLOOKUP · SUMIF · Text Functions · Array Formulas</p>
           <div class="plinks">
@@ -1064,8 +1067,15 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
   dialog.addEventListener('close', function () {
     document.documentElement.classList.remove('lock');
-    if (Math.abs(window.scrollY - lockY) > 2) window.scrollTo(0, lockY);
-    if (opener) { var back = opener; opener = null; back.focus(); }
+    var back = opener;
+    var y = lockY;
+    opener = null;
+    function restore() {
+      if (Math.abs(window.scrollY - y) > 2) window.scrollTo(0, y);
+      if (back) back.focus({ preventScroll: true });
+    }
+    restore();
+    setTimeout(restore, 0);
   });
   dialog.addEventListener('keydown', function (e) {
     if (e.key !== 'Tab') return;
