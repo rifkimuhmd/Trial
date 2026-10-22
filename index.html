@@ -964,6 +964,12 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   var dbody = document.getElementById('dbody');
   var opener = null;
   var lockY = 0;
+  var openGen = 0;
+  var origFocus = HTMLElement.prototype.focus;
+  HTMLElement.prototype.focus = function (opts) {
+    if (opener && this === opener) return origFocus.call(this, { preventScroll: true });
+    return origFocus.call(this, opts);
+  };
   function makeImg(src, alt, w, h, fig) {
     var img = document.createElement('img');
     img.className = 'dimg';
@@ -1053,8 +1059,10 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
     wrap.append(media, title, side, par);
     dbody.appendChild(wrap);
     dialog.setAttribute('aria-labelledby', 'pd-title');
+    openGen += 1;
     opener = btn;
     lockY = window.scrollY;
+    origFocus.call(btn, { preventScroll: true });
     dialog.showModal();
     document.documentElement.classList.add('lock');
     dialog.scrollTop = 0;
@@ -1067,15 +1075,17 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
   dialog.addEventListener('close', function () {
     document.documentElement.classList.remove('lock');
-    var back = opener;
     var y = lockY;
-    opener = null;
-    function restore() {
+    var back = opener;
+    var gen = openGen;
+    if (Math.abs(window.scrollY - y) > 2) window.scrollTo(0, y);
+    if (back) origFocus.call(back, { preventScroll: true });
+    setTimeout(function () {
+      if (gen !== openGen) return;
       if (Math.abs(window.scrollY - y) > 2) window.scrollTo(0, y);
-      if (back) back.focus({ preventScroll: true });
-    }
-    restore();
-    setTimeout(restore, 0);
+      if (back && document.activeElement !== back) origFocus.call(back, { preventScroll: true });
+      opener = null;
+    }, 0);
   });
   dialog.addEventListener('keydown', function (e) {
     if (e.key !== 'Tab') return;
