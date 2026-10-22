@@ -92,7 +92,7 @@ function imgFail(img) {
 @font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;src:url("fonts/inter-700.woff2") format("woff2")}
 *,*::before,*::after{box-sizing:border-box}
 *{margin:0;padding:0}
-html{background:var(--bg)}
+html{background:var(--bg);scroll-padding-top:76px}
 [data-theme="light"]{color-scheme:light;--bg:#F4F2EC;--bg2:#ECE9E1;--surface:#FFFFFF;--line:#DAD6CC;--line-ui:#6B675E;--text:#111110;--text2:#3F3D38;--muted:#5E5A52;--accent:#3F6212;--block:#C6F432;--on-block:#111110;--ink-block:#111110;--on-ink:#F4F2EC;--soft:rgba(77,124,15,.10);--wa:#15803D;--on-wa:#FFFFFF}
 [data-theme="dark"]{color-scheme:dark;--bg:#0F0F0E;--bg2:#151513;--surface:#1B1B19;--line:#2E2E2A;--line-ui:#8A877E;--text:#F5F5F0;--text2:#C9C7BF;--muted:#A3A097;--accent:#C6F432;--block:#C6F432;--on-block:#111110;--ink-block:#F5F5F0;--on-ink:#111110;--soft:rgba(198,244,50,.10);--wa:#25D366;--on-wa:#062312}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.5}
@@ -170,7 +170,6 @@ html.lock,html.lock body{overflow:hidden}
 .tile.k1 b{font-size:64px}
 
 .projects{border-top:2px solid var(--text);padding:28px 0 48px}
-#projects,#experience,#skills,#education,#about,#contact,#top{scroll-margin-top:76px}
 .phead{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
 h2{font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1.1}
 .h-sm{font-size:24px;letter-spacing:0}
@@ -298,6 +297,7 @@ details summary{min-height:44px;display:flex;align-items:center;font-weight:700;
 .dlinks a:hover,.dlinks a:focus-visible{background:var(--soft)}
 .dimg{width:100%;height:200px;object-fit:cover;object-position:left top;border:1px solid var(--line);background:var(--bg2);display:block}
 .dimg.media-ph,.dimg.media-fail{display:flex;border-style:dashed;border-color:var(--line-ui)}
+.dimg.media-ph{background:repeating-linear-gradient(135deg,transparent 0 10px,var(--soft) 10px 20px)}
 html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
 
 @media (min-width:1001px){
@@ -379,9 +379,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
       <button class="tbtn js-only js-theme" type="button" aria-label="Switch to dark theme"><span class="ic" aria-hidden="true"></span><span class="tl">Dark</span></button>
       <a class="btn btn-wa hdr-wa" href="https://wa.me/6285155338010?text=Hello%20Rifki%2C%20I%27m%20%5BYour%20Name%5D%20from%20%5BCompany%5D.%20I%20came%20across%20your%20portfolio%20and%20I%27m%20interested%20in%20your%20profile%20and%20CV.%20Would%20you%20be%20open%20to%20having%20a%20discussion%3F" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (opens in a new tab)"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span class="wa-label">WhatsApp</span></a>
       <button class="menu-btn js-only" type="button" aria-expanded="false" aria-controls="mobmenu"><svg class="burger" viewBox="0 0 18 14" width="18" height="14" aria-hidden="true"><path stroke="currentColor" stroke-width="2" d="M1 1h16M1 7h16M1 13h16"/></svg><svg class="xmark" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" hidden><path stroke="currentColor" stroke-width="2" d="M1 1l12 12M13 1L1 13"/></svg><span class="menu-label">Menu</span></button>
-    </div>
-  </div>
-  <nav id="mobmenu" class="mobmenu" aria-label="Menu" hidden>
+      <nav id="mobmenu" class="mobmenu" aria-label="Menu" hidden>
     <a class="mitem" href="#projects">Projects</a>
     <a class="mitem" href="#experience">Experience</a>
     <a class="mitem" href="#skills">Skills</a>
@@ -393,6 +391,8 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
       <a class="btn btn-wa" href="https://wa.me/6285155338010?text=Hello%20Rifki%2C%20I%27m%20%5BYour%20Name%5D%20from%20%5BCompany%5D.%20I%20came%20across%20your%20portfolio%20and%20I%27m%20interested%20in%20your%20profile%20and%20CV.%20Would%20you%20be%20open%20to%20having%20a%20discussion%3F" target="_blank" rel="noopener noreferrer">WhatsApp<span class="sr"> (opens in a new tab)</span></a>
     </div>
   </nav>
+    </div>
+  </div>
 </header>
 <main>
 <section class="hero" id="top">
@@ -532,8 +532,8 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
       </article>
 
       <article class="pcard" data-key="attendance" data-cats="python sql" data-title="Attendance Report Automation">
-        <div class="media" data-full="images/attendance-1200.webp" data-full-w="1200" data-full-h="735" data-alt="Attendance automation output in Google Sheets" data-fig="Python">
-          <img src="images/attendance-800.webp" srcset="images/attendance-400.webp 400w, images/attendance-800.webp 800w" sizes="(max-width: 560px) 92vw, (max-width: 1000px) 46vw, 384px" width="800" height="490" alt="Attendance automation output in Google Sheets" loading="lazy" decoding="async" data-fig="Python" onerror="imgFail(this)">
+        <div class="media" data-full="images/attendance-1200.webp" data-full-w="1200" data-full-h="735" data-alt="Python script for the attendance automation" data-fig="Python">
+          <img src="images/attendance-800.webp" srcset="images/attendance-400.webp 400w, images/attendance-800.webp 800w" sizes="(max-width: 560px) 92vw, (max-width: 1000px) 46vw, 384px" width="800" height="490" alt="Python script for the attendance automation" loading="lazy" decoding="async" data-fig="Python" onerror="imgFail(this)">
         </div>
         <div class="pb">
           <p class="fig"><b>Python</b> <span>→ Google Sheets</span></p>
@@ -865,7 +865,7 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
 (function () {
   var EXT = '<svg class="ext" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M7 17 17 7M9 7h8v8"/></svg>';
   var MORE = {
-    attendance: [{ src: 'images/attendance2-1200.webp', alt: 'Attendance automation output in Google Sheets, second view', w: 848, h: 523 }],
+    attendance: [{ src: 'images/attendance2-1200.webp', alt: 'Attendance automation output in Google Sheets', w: 848, h: 523 }],
     kudata: [{ src: 'images/kudata2-1200.webp', alt: 'Kudata survey dashboard in Looker Studio, second page', w: 1122, h: 782 }],
     thesis: [{ src: 'images/thesis2-1200.webp', alt: 'Early warning system backend, thesis screenshot, second view', w: 1200, h: 675 }],
     bookstore: [{ src: 'images/bookstore2-1200.webp', alt: 'Bookstore sales data in Excel, SQL results', w: 1068, h: 575 }],
@@ -1020,16 +1020,16 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
     var side = document.createElement('div');
     side.className = 'dside';
     var links = card.querySelectorAll('.plink');
-    var label = document.createElement('h3');
-    label.className = 'dlinks-label';
-    label.textContent = 'Links (' + links.length + ')';
-    side.appendChild(label);
     if (!links.length) {
       var none = document.createElement('p');
       none.className = 'nolink';
       none.textContent = 'No public link; screenshots only.';
       side.appendChild(none);
     } else {
+      var label = document.createElement('h3');
+      label.className = 'dlinks-label';
+      label.textContent = 'Links (' + links.length + ')';
+      side.appendChild(label);
       var ul = document.createElement('ul');
       ul.className = 'dlinks';
       links.forEach(function (a) {
