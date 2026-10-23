@@ -179,9 +179,9 @@ h2{font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1.1}
 .pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pcard{position:relative;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0;transition:border-color .15s}
 .pcard:hover{border-color:var(--line-ui)}
-.media{position:relative;aspect-ratio:16/9;background:var(--bg2);border-bottom:1px solid var(--line);overflow:hidden}
-.media img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:left top}
-.media-ph,.media-fail{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:12px}
+.media{position:relative;background:#fff;border-bottom:1px solid var(--line)}
+.media img{width:100%;height:auto;object-fit:contain;background:#fff;display:block}
+.media-ph,.media-fail{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:12px;aspect-ratio:16/9;min-height:160px}
 .media-ph{background:repeating-linear-gradient(135deg,transparent 0 10px,var(--soft) 10px 20px);border-bottom:1px dashed var(--line-ui)}
 .media-ph span,.media-fail span{font-size:14px;font-weight:700}
 .media-ph small{font-size:12.5px;font-weight:400;color:var(--muted)}
@@ -294,7 +294,7 @@ details summary{min-height:44px;display:flex;align-items:center;font-weight:700;
 .dlinks b{font-size:15px}
 .dlinks small{font-size:13px;font-weight:500;color:var(--text2)}
 .dlinks a:hover,.dlinks a:focus-visible{background:var(--soft)}
-.dimg{width:100%;height:200px;object-fit:cover;object-position:left top;border:1px solid var(--line);background:var(--bg2);display:block}
+.dimg{width:100%;height:auto;max-height:70vh;object-fit:contain;object-position:center center;border:1px solid var(--line);background:#fff;display:block}
 .dimg.media-ph,.dimg.media-fail{display:flex;border-style:dashed;border-color:var(--line-ui)}
 .dimg.media-ph{background:repeating-linear-gradient(135deg,transparent 0 10px,var(--soft) 10px 20px)}
 html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
@@ -302,11 +302,11 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
 @media (min-width:1001px){
   .hleft{container-type:inline-size}
   .big{font-size:132px;font-size:min(132px,calc(100cqi / 4.45))}
-  .pcard.feature{grid-column:span 2;grid-row:span 2}
-  .pcard.feature .media{aspect-ratio:auto;flex:1 1 auto;min-height:240px}
-  .pcard.wide{grid-column:span 2;flex-direction:row}
-  .pcard.wide .media{width:46%;flex:none;aspect-ratio:auto;align-self:stretch;border-bottom:0;border-right:1px solid var(--line);background:#fff;min-height:180px}
-  .pcard.wide .media img{object-position:center top}
+  .pcard.feature{grid-column:auto;grid-row:auto}
+  .pcard.feature .media{flex:none;min-height:0}
+  .pcard.wide{grid-column:span 2;flex-direction:row;align-items:center}
+  .pcard.wide .media{width:46%;flex:none;align-self:center;border-bottom:0;border-right:1px solid var(--line);background:#fff;min-height:0}
+  .pcard.wide .media img{width:100%;height:auto;object-fit:contain}
   .pcard.wide .pb{flex:1}
   .pcard.wide.media-ph,.pcard.wide .media-ph{border-right:1px dashed var(--line-ui);border-bottom:0}
 }
@@ -359,7 +359,8 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   .mactions{padding-left:18px;padding-right:18px}
   #pd{width:100%;max-width:100%;height:100dvh;max-height:100dvh;border:0;margin:0}
   .dgrid{grid-template-columns:1fr;grid-template-areas:"title" "side" "par" "media";padding:16px 18px 28px;gap:16px}
-  .dimg,.dimg.media-ph,.dimg.media-fail{height:180px}
+  .dimg{height:auto;max-height:70vh}
+  .dimg.media-ph,.dimg.media-fail{height:180px;max-height:none}
   #pd h2{font-size:24px}
 }
 </style>
