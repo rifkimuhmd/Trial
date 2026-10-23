@@ -31,7 +31,6 @@
   var theme = 'light';
   if (q === 'light' || q === 'dark') theme = q;
   else if (saved === 'light' || saved === 'dark') theme = saved;
-  else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
   document.documentElement.setAttribute('data-theme', theme);
 })();
 function imgFail(img) {
@@ -883,21 +882,6 @@ html.js #pgrid[data-filter="all"]:not(.is-expanded) .extra{display:none}
   themeBtn.addEventListener('click', function () {
     applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
   });
-  var qTheme = null;
-  try { qTheme = new URLSearchParams(location.search).get('theme'); } catch (e) {}
-  var savedTheme = null;
-  try { savedTheme = localStorage.getItem('porto-theme'); } catch (e) {}
-  if (qTheme !== 'light' && qTheme !== 'dark' && savedTheme !== 'light' && savedTheme !== 'dark' && window.matchMedia) {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var onScheme = function (e) {
-      var s = null;
-      try { s = localStorage.getItem('porto-theme'); } catch (err) {}
-      if (s === 'light' || s === 'dark') return;
-      applyTheme(e.matches ? 'dark' : 'light', false);
-    };
-    if (mq.addEventListener) mq.addEventListener('change', onScheme);
-  }
-
   var grid = document.getElementById('pgrid');
   var showBtn = document.getElementById('showall');
   var showWrap = document.getElementById('showall-wrap');
